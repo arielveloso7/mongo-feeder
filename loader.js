@@ -1,8 +1,15 @@
 import connection from './mysql.js'
 import mongoose from 'mongoose';
 import util from 'util';
+import dotenv from 'dotenv';
 
 /**
+ * @description Carga de variables de entorno
+ */
+
+dotenv.config();
+
+ /**
  * @description Transformación en promesas los métodos de mySQL
  * 
  *  
@@ -26,9 +33,7 @@ process.on('exit', (code) => {
  * @constructor Film
  */  
 
-const url = `mongodb+srv://neoland:neoland@cluster0-azhpf.mongodb.net/mymovies?retryWrites=true&w=majority`;
-
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 const filmSchema = new mongoose.Schema({
